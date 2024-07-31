@@ -6,13 +6,27 @@ description 'RSG-fight'
 
 version '1.0.2'
 
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@rsg-core/shared/locale.lua',
+    -- 'locales/en.lua', -- Change to your language
+    'config.lua',
+}
+
 server_script {
-    'server.lua',
-    'config.lua'
+    'server/*.lua',
 }
 
 client_script {
-    'client.lua',
-    'config.lua'
+    'client/*.lua',
 }
 
+dependencies {
+    'rsg-core',
+    'rsg-target',
+    'ox_lib'
+}
+
+
+
+lua54 'yes'
