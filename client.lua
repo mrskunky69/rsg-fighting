@@ -318,7 +318,7 @@ local function spawnMarker(coords)
             false, false, 2, false, nil, nil, false
         )
         DrawText3D(Config.CENTER.x, Config.CENTER.y, Config.CENTER.z + 1.5, 'Players: ' .. players)
-        DrawText3D(Config.CENTER.x, Config.CENTER.y, Config.CENTER.z + 1.2, 'Press [G] to place a bet')
+        ----DrawText3D(Config.CENTER.x, Config.CENTER.y, Config.CENTER.z + 1.2, 'Press [G] to place a bet')
         
         
         if IsControlJustReleased(0, Config.G_KEY) and not participating and fightStatus == STATUS_JOINED then
@@ -425,4 +425,12 @@ CreateThread(function()
             if #(coords - Config.CENTER) < Config.TP_DISTANCE then
                 local safeCoords = vector3(
                     Config.CENTER.x + math.random(-Config.TP_DISTANCE, Config.TP_DISTANCE),
-              
+                    Config.CENTER.y + math.random(-Config.TP_DISTANCE, Config.TP_DISTANCE),
+                    Config.CENTER.z
+                )
+                SetEntityCoords(PlayerPedId(), safeCoords.x, safeCoords.y, safeCoords.z, true, false, false, false)
+            end
+        end
+        Wait(sleep)
+    end
+end)
